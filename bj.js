@@ -12,6 +12,10 @@ const playerEl = document.getElementById("player-el")
 const startGameBtn = document.getElementById("btn-start")
 const drawNewCard = document.getElementById("btn-newcard")
 
+
+var cardSVG = document.getElementById("cards-el");
+
+
 let player = {
     name: "Eru",
     credits: 150
@@ -21,7 +25,6 @@ playerEl.textContent = player.name + ": $" + player.credits
 
 function getRandomCard() {
     let randomNumber = Math.floor(Math.random() * 13) + 1
-    console.log(randomNumber)
     if (randomNumber > 10) {
         return 10
     } else if (randomNumber === 1) {
@@ -42,10 +45,14 @@ startGameBtn.addEventListener("click", function startGame() {
 })
 
 function renderGame() {
+    cardSVG.innerHTML = ""
     sumEl.textContent = "Sum: " + sum
-    cardsEl.textContent =  "Cards: "
+    // cardsEl.textContent =  "Cards: "
     for (i=0; i< cards.length; i++) {
-        cardsEl.textContent += cards[i] + " "
+        // cardsEl.textContent += cards[i] + " "
+        cardSVG.innerHTML += `<img src="images/cards/${cardPickSVG(cards[i])}" width="100" height="100"></img>`
+        console.log("DEBUG" + cardSVG.innerHTML)
+
     }
     if (sum < 21) {
         message = "Do you want to draw another card ? "
@@ -69,3 +76,31 @@ drawNewCard.addEventListener("click", function newCard() {
         renderGame()
     }
 })
+ 
+function cardPickSVG(incCardNumber) {
+    let randomNumber = Math.floor(Math.random() * 4)
+    let cardToReturn = ""
+    if (incCardNumber === 11) {
+        cardToReturn = "J" + getCardSuit(randomNumber) + ".svg"
+    }   else if (incCardNumber === 12) {
+        cardToReturn = "Q" + getCardSuit(randomNumber) + ".svg"
+    }   else if (incCardNumber === 13) {
+        cardToReturn = "K" + getCardSuit(randomNumber) + ".svg"
+    }   else {
+        cardToReturn = incCardNumber + getCardSuit(randomNumber) + ".svg"
+    }
+    console.log("debug!" + cardToReturn)
+    return cardToReturn
+}
+
+function getCardSuit(randomNumber) {
+    if (randomNumber === 0) {
+        return "C"
+    } else if (randomNumber === 1) {
+        return "D"
+    } else if (randomNumber === 2) {
+        return "H"
+    } else {
+        return "S"
+    }
+}

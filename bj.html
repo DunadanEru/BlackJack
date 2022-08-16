@@ -8,14 +8,17 @@
     <link rel = "stylesheet" href="bj.css">
 </head>
 <body>
-    <div class="wrapper">
+    <div class="container">
         <div class="header">BlackJack</div>
-        <p class="message-box" id="message-el">Click Start button to play!</p>
-        <p class="output-cards" id="cards-el">Cards:</p>
-        <p class="output-score" id="sum-el">Sum:</p>
-        <button id="btn-start">START GAME</button>
-        <button id="btn-newcard">NEW CARD</button>
-        <p id="player-el"></p>
+        <div class="message-box" id="message-el">Click Start button to play!</div>
+        <div class="output-cards" id="cards-el"></div>
+        <div class="output-score" id="sum-el">Sum:</div>
+        <div class="act-buttons">
+            <button id="btn-start">START GAME</button>
+            <button id="btn-newcard">NEW CARD</button>
+        </div>
+        <div class="player-info" id="player-el"></div>
+        <div class="settings" id="btn-settings" onclick="location.href='#';" style="cursor: pointer;">settings</div>
     </div>
 </body>
 </html>

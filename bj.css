@@ -1,22 +1,50 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    /* background-image: linear-gradient(#333,#fff); */
+}
+
+
 body {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     font-weight: bold;
     background-image: url("images/table.png");
     background-size: cover;
-    text-align: center;
     color: wheat;
 }
 
-h1 {
+.wrapper {
+    display: grid;
+    grid-template-columns: 1fr 2fr 2fr 1fr; 
+    align-items: stretch;
+}
+
+.header {
+    font-size: x-large;
+    font-weight: bold;
+    align-self: stretch;
+    justify-self: center;
+    grid-column: 1/5;
+    grid-row: 1;
+    padding: 10px;
     color: goldenrod;
 }
 
-#message-el {
+.message-box {
+    align-self: stretch;
+    justify-self: center;
+    grid-column: 2/4;
+    grid-row: 2;
     font-style: italic;
+    padding-bottom: 5%;
 
 }
 
 button {
+    grid-column: 2/4;
+    align-self: stretch;
+    justify-self: center;
     width: 150px;
     color: #016f32;
     background: goldenrod;
@@ -27,4 +55,15 @@ button {
     border-radius: 2px;
     margin-bottom: 2px;
     margin-top: 2px;
+}
+
+.output-cards {
+    grid-column: 2/4;
+    grid-row: 3;
+}
+
+.output-score {
+    align-self: start;
+    grid-column: 2/3;
+    grid-row: 4;    
 }

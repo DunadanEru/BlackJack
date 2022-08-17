@@ -1,6 +1,7 @@
-
 let sum = 0
+let cardsNumerical = []
 let cards = []
+let cardsToDisplay = []
 let hasBlackJack = false
 let isAlive = false
 let message = ""
@@ -25,37 +26,36 @@ playerEl.textContent = player.name + ": $" + player.credits
 
 function getRandomCard() {
     let randomNumber = Math.floor(Math.random() * 13) + 1
+    let cardValue = 0
     if (randomNumber > 10) {
-        console.log("random number is: " + randomNumber)
-        return 10
+        cardValue = 10
     } else if (randomNumber === 1) {
-        console.log("random number is: " + randomNumber + " --- Returning ACE")
-        return 11
+        cardValue = 11
     } else {
-        console.log("random number is: " + randomNumber)
-        return randomNumber
+        cardValue = randomNumber
     }
+    return [cardValue, randomNumber];
 }
 
 startGameBtn.addEventListener("click", function startGame() {
     isAlive = true
     hasBlackJack = false
-    let firstCard = getRandomCard()
-    let secondCard  = getRandomCard()
+    let [firstCard, displayFirstCard]  = getRandomCard()
+    let [secondCard, displaySecondCard]  = getRandomCard()
     sum = firstCard + secondCard
     cards = [firstCard, secondCard]
+    cardsNumerical = [displayFirstCard, displaySecondCard]
+    cardsToDisplay = [cardPickSVG(displayFirstCard), cardPickSVG(displaySecondCard)]
     renderGame()
 })
 
+
+// Main function to render game on each turn
 function renderGame() {
     cardSVG.innerHTML = ""
     sumEl.textContent = "Sum: " + sum
-    // cardsEl.textContent =  "Cards: "
-    for (i=0; i< cards.length; i++) {
-        // cardsEl.textContent += cards[i] + " "
-        cardSVG.innerHTML += `<img src="images/cards/${cardPickSVG(cards[i])}" width="100" height="150"></img>`
-        // console.log("DEBUG" + cardSVG.innerHTML)
-
+    for (i=0; i< cardsToDisplay.length; i++) {
+        cardSVG.innerHTML += `<img src="images/cards/${cardsToDisplay[i]}" width="100" height="150"></img>`
     }
     if (sum < 21) {
         message = "Do you want to draw another card ? "
@@ -68,14 +68,15 @@ function renderGame() {
         message = "You're out of the game! "
     }
     messageEl.textContent = message
-    // console.log(message)
 }
 
 drawNewCard.addEventListener("click", function newCard() {
     if (isAlive === true && hasBlackJack === false) {
-        let card = getRandomCard()
-        sum += card
-        cards.push(card)
+        let [cardValue, displayCard] = getRandomCard()
+        sum += cardValue
+        cards.push(cardValue)
+        cardsNumerical.push(displayCard)
+        cardsToDisplay.push(cardPickSVG(displayCard))
         renderGame()
     }
 })
@@ -83,7 +84,6 @@ drawNewCard.addEventListener("click", function newCard() {
 function cardPickSVG(incCardNumber) {
     let randomNumber = Math.floor(Math.random() * 4)
     let cardToReturn = ""
-    console.log('INCOMING CARD NUMBER: ' + incCardNumber)
     if (incCardNumber === 1) {
         cardToReturn = "A" + getCardSuit(randomNumber) + ".svg"
     }   else if (incCardNumber === 11) {
@@ -95,7 +95,6 @@ function cardPickSVG(incCardNumber) {
     }   else {
         cardToReturn = incCardNumber + getCardSuit(randomNumber) + ".svg"
     }
-    console.log("debug!" + cardToReturn)
     return cardToReturn
 }
 

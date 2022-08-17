@@ -26,10 +26,13 @@ playerEl.textContent = player.name + ": $" + player.credits
 function getRandomCard() {
     let randomNumber = Math.floor(Math.random() * 13) + 1
     if (randomNumber > 10) {
+        console.log("random number is: " + randomNumber)
         return 10
     } else if (randomNumber === 1) {
+        console.log("random number is: " + randomNumber + " --- Returning ACE")
         return 11
     } else {
+        console.log("random number is: " + randomNumber)
         return randomNumber
     }
 }
@@ -50,8 +53,8 @@ function renderGame() {
     // cardsEl.textContent =  "Cards: "
     for (i=0; i< cards.length; i++) {
         // cardsEl.textContent += cards[i] + " "
-        cardSVG.innerHTML += `<img src="images/cards/${cardPickSVG(cards[i])}" width="100" height="100"></img>`
-        console.log("DEBUG" + cardSVG.innerHTML)
+        cardSVG.innerHTML += `<img src="images/cards/${cardPickSVG(cards[i])}" width="100" height="150"></img>`
+        // console.log("DEBUG" + cardSVG.innerHTML)
 
     }
     if (sum < 21) {
@@ -65,7 +68,7 @@ function renderGame() {
         message = "You're out of the game! "
     }
     messageEl.textContent = message
-    console.log(message)
+    // console.log(message)
 }
 
 drawNewCard.addEventListener("click", function newCard() {
@@ -80,7 +83,10 @@ drawNewCard.addEventListener("click", function newCard() {
 function cardPickSVG(incCardNumber) {
     let randomNumber = Math.floor(Math.random() * 4)
     let cardToReturn = ""
-    if (incCardNumber === 11) {
+    console.log('INCOMING CARD NUMBER: ' + incCardNumber)
+    if (incCardNumber === 1) {
+        cardToReturn = "A" + getCardSuit(randomNumber) + ".svg"
+    }   else if (incCardNumber === 11) {
         cardToReturn = "J" + getCardSuit(randomNumber) + ".svg"
     }   else if (incCardNumber === 12) {
         cardToReturn = "Q" + getCardSuit(randomNumber) + ".svg"

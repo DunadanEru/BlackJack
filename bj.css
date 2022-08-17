@@ -19,14 +19,16 @@ button {
     background: goldenrod;
     border: none;
     border-radius: 5px;
-    margin: 10px 50px;
+    margin: 10px 10px;
     font-size: 16px;
     font-weight: bold;
     padding: 5px;
+    justify-self: center;
+    width: 150px;
 }
 
 .container {
-    max-width: 960px;
+    max-width: 800px;
     margin: 10px auto;
     padding: 10px;
     display: grid;
@@ -53,18 +55,11 @@ button {
     font-style: italic;
 }
 
-.act-buttons {
-    display: flex;
-    grid-column: 2/4;
-    justify-self: center;
-
-
-
-
-}
-
 .output-cards {
-    grid-column: 2/4;
+    align-self: center;
+    justify-self: center;
+    height: 150px;
+    grid-column: 2/3;
     grid-row: 3;
 }
 
@@ -81,4 +76,18 @@ button {
 .settings {
     grid-column: 3/4;
     grid-row: 1;
+}
+
+#btn-start {
+    grid-column: 2/3;
+    grid-row: 5;
+    justify-self: start;
+    /* margin-block-start: 100px; */
+}
+
+#btn-newcard {
+    grid-column: 2/3;
+    grid-row: 5;
+    justify-self: end;
+    /* margin-block-end: 100px; */
 }

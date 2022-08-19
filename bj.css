@@ -14,18 +14,7 @@ body {
     color: wheat;
 }
 
-button {
-    color: #016f32;
-    background: goldenrod;
-    border: none;
-    border-radius: 5px;
-    margin: 10px 10px;
-    font-size: 16px;
-    font-weight: bold;
-    padding: 5px;
-    justify-self: center;
-    width: 150px;
-}
+
 
 .container {
     max-width: 800px;
@@ -58,7 +47,6 @@ button {
 .output-cards {
     align-self: center;
     justify-self: center;
-    height: 150px;
     grid-column: 2/3;
     grid-row: 3;
 }
@@ -78,16 +66,52 @@ button {
     grid-row: 1;
 }
 
-#btn-start {
+/* #btn-start {
     grid-column: 2/3;
     grid-row: 5;
     justify-self: start;
-    /* margin-block-start: 100px; */
+    margin-block-start: 100px;
 }
 
 #btn-newcard {
     grid-column: 2/3;
     grid-row: 5;
     justify-self: end;
-    /* margin-block-end: 100px; */
+    margin-block-end: 100px;
+} */
+
+:root{
+    --btn_height: 35px;
+    --btnBg:goldenrod;
+    --btnBgHover:rgb(161, 119, 12);
+    --btnTxt:#000;
+}
+
+.btn_wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    grid-column: 2/3;
+    grid-row: 5;
+    gap: 10px;
+}
+
+.btn{
+    appearance: none;
+    outline: 0;
+    border: 0;
+    height: var(--btn_height);
+    min-width: 100px;
+    padding: 0 12px;
+    color: var(--btnTxt);
+    background-color: var(--btnBg);
+    border: none;
+    border-radius: 5px;
+    transition: all 0.2s;
+
+
+}
+
+.btn:active {
+    background-color: var(--btnBgHover);
 }
